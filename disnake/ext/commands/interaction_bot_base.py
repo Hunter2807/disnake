@@ -227,7 +227,7 @@ class InteractionBotBase(CommonBotBase):
             The slash command passed is not an instance of :class:`InvokableSlashCommand`.
         """
         if not isinstance(self, disnake.Client):
-            raise NotImplementedError(f"This method is only usable in disnake.Client subclasses")
+            raise NotImplementedError("This method is only usable in disnake.Client subclasses")
 
         if not isinstance(slash_command, InvokableSlashCommand):
             raise TypeError("The slash_command passed must be an instance of InvokableSlashCommand")
@@ -257,7 +257,7 @@ class InteractionBotBase(CommonBotBase):
             The user command passed is not an instance of :class:`InvokableUserCommand`.
         """
         if not isinstance(self, disnake.Client):
-            raise NotImplementedError(f"This method is only usable in disnake.Client subclasses")
+            raise NotImplementedError("This method is only usable in disnake.Client subclasses")
 
         if not isinstance(user_command, InvokableUserCommand):
             raise TypeError("The user_command passed must be an instance of InvokableUserCommand")
@@ -287,7 +287,7 @@ class InteractionBotBase(CommonBotBase):
             The message command passed is not an instance of :class:`InvokableMessageCommand`.
         """
         if not isinstance(self, disnake.Client):
-            raise NotImplementedError(f"This method is only usable in disnake.Client subclasses")
+            raise NotImplementedError("This method is only usable in disnake.Client subclasses")
 
         if not isinstance(message_command, InvokableMessageCommand):
             raise TypeError(
@@ -651,7 +651,7 @@ class InteractionBotBase(CommonBotBase):
 
     async def _cache_application_commands(self) -> None:
         if not isinstance(self, disnake.Client):
-            raise NotImplementedError(f"This method is only usable in disnake.Client subclasses")
+            raise NotImplementedError("This method is only usable in disnake.Client subclasses")
 
         _, guilds = self._ordered_unsynced_commands(self._test_guilds)
 
@@ -682,7 +682,7 @@ class InteractionBotBase(CommonBotBase):
 
     async def _sync_application_commands(self) -> None:
         if not isinstance(self, disnake.Client):
-            raise NotImplementedError(f"This method is only usable in disnake.Client subclasses")
+            raise NotImplementedError("This method is only usable in disnake.Client subclasses")
 
         if not self._sync_commands or self._is_closed or self.loop.is_closed():
             return
@@ -746,7 +746,7 @@ class InteractionBotBase(CommonBotBase):
     async def _cache_application_command_permissions(self) -> None:
         # This method is usually called once per bot start
         if not isinstance(self, disnake.Client):
-            raise NotImplementedError(f"This method is only usable in disnake.Client subclasses")
+            raise NotImplementedError("This method is only usable in disnake.Client subclasses")
 
         guilds_to_cache = set()
         for cmd in self.application_commands_iterator():
@@ -776,7 +776,7 @@ class InteractionBotBase(CommonBotBase):
     async def _sync_application_command_permissions(self) -> None:
         # Assuming that permissions and commands are cached
         if not isinstance(self, disnake.Client):
-            raise NotImplementedError(f"This method is only usable in disnake.Client subclasses")
+            raise NotImplementedError("This method is only usable in disnake.Client subclasses")
 
         if not self._sync_permissions or self._is_closed or self.loop.is_closed():
             return
@@ -851,7 +851,7 @@ class InteractionBotBase(CommonBotBase):
 
     async def _prepare_application_commands(self) -> None:
         if not isinstance(self, disnake.Client):
-            raise NotImplementedError(f"Command sync is only possible in disnake.Client subclasses")
+            raise NotImplementedError("Command sync is only possible in disnake.Client subclasses")
 
         self._sync_queued = True
         await self.wait_until_first_connect()
@@ -863,7 +863,7 @@ class InteractionBotBase(CommonBotBase):
 
     async def _delayed_command_sync(self) -> None:
         if not isinstance(self, disnake.Client):
-            raise NotImplementedError(f"This method is only usable in disnake.Client subclasses")
+            raise NotImplementedError("This method is only usable in disnake.Client subclasses")
 
         if (
             not self._sync_commands
@@ -883,7 +883,7 @@ class InteractionBotBase(CommonBotBase):
 
     def _schedule_app_command_preparation(self) -> None:
         if not isinstance(self, disnake.Client):
-            raise NotImplementedError(f"Command sync is only possible in disnake.Client subclasses")
+            raise NotImplementedError("Command sync is only possible in disnake.Client subclasses")
 
         self.loop.create_task(
             self._prepare_application_commands(), name="disnake: app_command_preparation"
@@ -891,7 +891,7 @@ class InteractionBotBase(CommonBotBase):
 
     def _schedule_delayed_command_sync(self) -> None:
         if not isinstance(self, disnake.Client):
-            raise NotImplementedError(f"This method is only usable in disnake.Client subclasses")
+            raise NotImplementedError("This method is only usable in disnake.Client subclasses")
 
         self.loop.create_task(self._delayed_command_sync(), name="disnake: delayed_command_sync")
 
