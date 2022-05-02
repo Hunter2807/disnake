@@ -675,7 +675,7 @@ class InteractionResponse:
     async def defer(
         self,
         *,
-        with_message: Literal[True],
+        with_message: bool = ...,
         ephemeral: bool = ...,
     ) -> None:
         ...
@@ -684,7 +684,6 @@ class InteractionResponse:
     async def defer(
         self,
         *,
-        with_message: Literal[False],
     ) -> None:
         ...
 
